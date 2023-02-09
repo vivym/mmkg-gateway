@@ -1,0 +1,11 @@
+:80 {
+    encode zstd gzip
+
+    handle_path /mmkg-visual-entity-recognition/* {
+        reverse_proxy mmkg-visual-entity-recognition:80
+    }
+
+    handle_path /mmkg-mm-entity-linking/* {
+        reverse_proxy mmkg-mm-entity-linking:80
+    }
+}

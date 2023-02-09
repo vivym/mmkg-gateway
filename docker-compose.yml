@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  gateway:
+    image: caddy:latest
+    ports:
+      - 47080:80
+      - 47443:443
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./data/caddy_data:/data
+
+  mmkg-visual-entity-recognition:
+    image: vivym/mmkg-visual-entity-recognition:latest
+    volumes:
+      - ./data/uploaded_images:/work/uploaded_images
+      - ~/.cache:/root/.cache
+
+  mmkg-mm-entity-linking:
+    image: mmkg-mm-entity-linking:latest
+    volumes:
+      - ./data/uploaded_images:/work/uploaded_images
+      - ~/.cache:/root/.cache
